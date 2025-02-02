@@ -42,12 +42,6 @@ set_line_by_data = np.polyfit(numpy_x, numpy_y, 1) # полином первой
 linear_trend = np.poly1d(set_line_by_data) # снижение размерности до одномерного массива
 print("{0}x + {1}".format(*set_line_by_data)) # формула
 
-# полиномиальный
-# set_polinom_by_data = np.polyfit(numpy_x, numpy_y, 6) # работа с полиномом 6 степени
-# polinom_trend = np.poly1d(set_polinom_by_data) # Рассчитать значение полинома в точках x
-# print("${0}x^6 + {1}x^5 + {2}x^4 + {3}x^3 + {4}x^2 + {5}x + {6}$".format(*set_polinom_by_data)) # формула
-# set_polinom_by_data = np.polyfit(numpy_x, numpy_y, 6)
-
 set_polinom_by_data = np.polyfit(numpy_x, numpy_y, 2) # работа с полиномом 2 степени
 polinom_trend = np.poly1d(set_polinom_by_data) # Рассчитать значение полинома в точках x
 
@@ -70,10 +64,8 @@ polinom_r2 = r2_score(numpy_y, polinom_trend(numpy_x))
 log_r2 = r2_score(numpy_y, log_trend)
 exp_r2 = r2_score(numpy_y, exp_trend)
 
-
 # Отображение графиков
 plt.figure(figsize=(15, 15)) # размер графика
-
 
 # 2 графика по горизонтали, 2 по вертикали
 plt.subplot(2, 2, 1)
@@ -83,7 +75,7 @@ plt.scatter(numpy_x, numpy_y, label = 'data') # точечный график п
 plt.plot(numpy_x, linear_trend(numpy_x), linestyle='dashed', color="orange", label = 'linear trend') # линейный тренд
 plt.grid(color="gainsboro") # Сетка
 plt.legend(loc='upper right', fontsize=12)
-plt.title("Линейный \n$R^2=$" + str(linear_r2))
+plt.title("Линейный \n$R^2=$" + str(linear_r2) + "\n{0}x + {1}".format(*set_line_by_data))
 
 # !!! Текущая ячейка - 2
 plt.subplot(2, 2, 2)
@@ -100,7 +92,7 @@ plt.scatter(numpy_x, numpy_y, label = 'data') # точечный график п
 plt.plot(numpy_x, log_trend, linestyle='dashed', color="orange", label = 'log trend') # логарифмический тренд
 plt.grid(color="gainsboro") # Сетка
 plt.legend(loc = 'upper right', fontsize=12)
-plt.title("Логарифмический \n$R^2=$" + str(log_r2))
+plt.title("Логарифмический \n$R^2=$" + str(log_r2) + "\n${0}ln(x) + {1}$".format(*set_log_by_data))
 
 # !!! Текущая ячейка - 4
 plt.subplot(2, 2, 4)
@@ -108,13 +100,13 @@ plt.scatter(numpy_x, numpy_y, label = 'data') # точечный график п
 plt.plot(numpy_x, exp_trend, linestyle='dashed', color="orange", label = 'exp trend')
 plt.grid(color="gainsboro") # Сетка
 plt.legend(loc = 'center left', fontsize=12, bbox_to_anchor=(1, 0.5))
-plt.title("Экспоненциальный \n$R^2=$" + str(exp_r2))
+plt.title("Экспоненциальный \n$R^2=$" + str(exp_r2) + "\n{1}e^({0}x)".format(*set_exp_by_data))
 
 fig = plt.gcf() # Взять текущую фигуру
 fig.set_size_inches(15, 15) # Задать размеры графика
 
-# Покажем окно с нарисованным графиком
 plt.show()
 
 print("x:", x)
 print("y:", y)
+
