@@ -30,7 +30,7 @@ t1 = LpVariable("t1", lowBound=0)
 t2 = LpVariable("t2", lowBound=0)
 t3 = LpVariable("t3", lowBound=0)
 t4 = LpVariable("t4", lowBound=0)
-secondproblem = LpProblem('0', LpMinimize)
+secondproblem = LpProblem('0', LpMaximize)
 secondproblem += 120*t1 + 50*t2 + 30*t3 + 100*t4, "Функция цели"
 secondproblem += 18*t1 + 26*t2 + 16* t3 + 10*t4 <= 110000, "1"
 secondproblem += 150*t1 + 140*t2 + 50* t3 + 80*t4 <= 950000, "2"
